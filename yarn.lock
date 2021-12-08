@@ -4310,10 +4310,10 @@
   dependencies:
     tslib "^1.9.2"
 
-"@skbkontur/react-props2attrs@0.1.2", "@skbkontur/react-props2attrs@^0.1.2":
+"@skbkontur/react-selenium-testing@^0.1.2":
   version "0.1.2"
-  resolved "https://registry.npmjs.org/@skbkontur/react-props2attrs/-/react-props2attrs-0.1.2.tgz#ea6b9339d748ec1d7264bfb01da2ec62ec4ad180"
-  integrity sha512-horspnjV6xFUuxKD9noX+t1tF6HI23AR7+4blh4s7mHATWko3AtUBobXCK2CnJbZC2lofRE2kaKUK9i6EIZiAA==
+  resolved "https://registry.npmjs.org/@skbkontur/react-selenium-testing/-/react-selenium-testing-0.1.2.tgz#a1fca2c0f3f0e9bf7ac3fe9ecaf427dbae472de4"
+  integrity sha512-vdhsOTJLFWh2GlDyK6KOxkzN9NzhWduh3e30rWW/aC3TMAi2GSzc7vqxfKifW1VFGnC/8HaphiA3AxdXDggwDQ==
   dependencies:
     "@skbkontur/react-sorge" "0.1.0"
 

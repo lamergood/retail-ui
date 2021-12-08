@@ -57,7 +57,7 @@
     "@babel/preset-react": "^7.12.7",
     "@hot-loader/react-dom": "^17.0.1",
     "@skbkontur/react-icons": "^4.4.0",
-    "@skbkontur/react-props2attrs": "^0.1.2",
+    "@skbkontur/react-selenium-testing": "^0.1.2",
     "@skbkontur/react-sorge": "^0.1.0",
     "@storybook/react": "6.3.2",
     "@types/jest": "^26.0.20",
