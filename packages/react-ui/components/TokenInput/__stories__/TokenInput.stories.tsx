@@ -523,6 +523,11 @@ OnUnexpectedInputValidation.parameters = {
         tests: 'token select',
         reason: 'flacky "clearedOnNullReturn"',
       },
+      {
+        in: ['ie11', 'ie118px', 'ie11Flat', 'ie11Flat8px'],
+        tests: 'token edit',
+        reason: 'unstable working doubleClick',
+      },
     ],
     tests: {
       async ['token select']() {
