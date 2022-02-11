@@ -89,7 +89,7 @@ SimpleComboboxStory.parameters = {
           .perform();
         await this.expect(await this.takeScreenshot()).to.matchImage('selected');
       },
-      async ['search result']() {
+      async 'search result'() {
         await this.browser
           .actions({
             bridge: true,
@@ -127,7 +127,7 @@ SimpleComboboxStory.parameters = {
           .perform();
         await this.expect(await this.takeScreenshot()).to.matchImage('selcted');
       },
-      async ['opened again']() {
+      async 'opened again'() {
         await this.browser
           .actions({
             bridge: true,
@@ -155,7 +155,7 @@ SimpleComboboxStory.parameters = {
           .perform();
         await this.expect(await this.takeScreenshot()).to.matchImage('opened again');
       },
-      async ['search result_0']() {
+      async 'search result_0'() {
         await this.browser
           .actions({
             bridge: true,
@@ -513,7 +513,7 @@ ToogleError.parameters = {
       async plain() {
         await this.expect(await this.takeScreenshot()).to.matchImage('plain');
       },
-      async ['with error']() {
+      async 'with error'() {
         await this.browser
           .actions({
             bridge: true,
@@ -523,7 +523,7 @@ ToogleError.parameters = {
           .perform();
         await this.expect(await this.takeScreenshot()).to.matchImage('with error');
       },
-      async ['plain again']() {
+      async 'plain again'() {
         await this.browser
           .actions({
             bridge: true,
@@ -556,10 +556,10 @@ WithExternalValue.storyName = 'with external value';
 WithExternalValue.parameters = {
   creevey: {
     tests: {
-      async ['initial value']() {
+      async 'initial value'() {
         await this.expect(await this.takeScreenshot()).to.matchImage('initial value');
       },
-      async ['reset value']() {
+      async 'reset value'() {
         await this.browser
           .actions({
             bridge: true,
@@ -568,7 +568,7 @@ WithExternalValue.parameters = {
           .perform();
         await this.expect(await this.takeScreenshot()).to.matchImage('reset value');
       },
-      async ['set value']() {
+      async 'set value'() {
         await this.browser
           .actions({
             bridge: true,
@@ -628,7 +628,7 @@ FocusFlow.parameters = {
       async before() {
         await this.expect(await this.takeScreenshot()).to.matchImage('before');
       },
-      async ['after Enter on Item']() {
+      async 'after Enter on Item'() {
         await this.browser
           .actions({
             bridge: true,
@@ -637,7 +637,7 @@ FocusFlow.parameters = {
           .perform();
         await this.expect(await this.takeScreenshot()).to.matchImage('after Enter on Item');
       },
-      async ['after tab to the next field']() {
+      async 'after tab to the next field'() {
         await this.browser
           .actions({
             bridge: true,
@@ -1117,7 +1117,7 @@ WithTooltip.storyName = 'with tooltip';
 WithTooltip.parameters = {
   creevey: {
     tests: {
-      async ['show and hide Tooltip']() {
+      async 'show and hide Tooltip'() {
         const body = await this.browser.findElement({ css: 'body' });
 
         await this.browser

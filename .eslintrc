@@ -41,6 +41,7 @@
     "no-unneeded-ternary": 1,
     "no-useless-concat": 1,
     "prefer-spread": 1,
+    "no-useless-computed-key": 1,
     "no-restricted-syntax": [
       2,
       {
