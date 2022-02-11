@@ -1,3 +1,4 @@
+/* eslint-disable prefer-arrow-callback */
 import React from 'react';
 import AddIcon from '@skbkontur/react-icons/Add';
 import BabyIcon from '@skbkontur/react-icons/Baby';

@@ -1,3 +1,4 @@
+/* eslint-disable prefer-arrow-callback */
 import React, { useCallback, useState } from 'react';
 
 import { Story } from '../../../typings/stories';

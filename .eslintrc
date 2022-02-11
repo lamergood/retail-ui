@@ -45,6 +45,7 @@
     "no-else-return": 1,
     "no-lonely-if": 1,
     "yoda": 1,
+    "prefer-arrow-callback": 2,
     "no-restricted-syntax": [
       2,
       {

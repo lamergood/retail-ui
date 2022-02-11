@@ -1,3 +1,4 @@
+/* eslint-disable prefer-arrow-callback */
 import React from 'react';
 import { linkTo } from '@storybook/addon-links';
 

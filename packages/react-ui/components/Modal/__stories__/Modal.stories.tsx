@@ -1,3 +1,4 @@
+/* eslint-disable prefer-arrow-callback */
 import React, { Component, useContext, useState } from 'react';
 import BorderAllIcon from '@skbkontur/react-icons/BorderAll';
 
