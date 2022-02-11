@@ -47,6 +47,7 @@
     "yoda": 1,
     "prefer-arrow-callback": 2,
     "eqeqeq": 2,
+    "no-implicit-coercion": [2, { "allow": ["!!", "+"] }],
     "no-restricted-syntax": [
       2,
       {
