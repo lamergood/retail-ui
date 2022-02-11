@@ -92,13 +92,15 @@ export class ComboBoxMenu<T> extends Component<ComboBoxMenuProps<T>> {
 
     if ((!isNonNullable(items) || items.length === 0) && renderNotFound) {
       const notFoundValue = renderNotFound();
-      if (renderAddButton)
+      if (renderAddButton) {
         return (
           <Menu maxHeight={maxHeight} ref={refMenu} disableScrollContainer={isMobile}>
             {renderAddButton}
           </Menu>
         );
-      if (notFoundValue)
+      }
+
+      if (notFoundValue) {
         return (
           <Menu maxHeight={maxHeight} ref={refMenu} disableScrollContainer={isMobile}>
             <MenuItem data-tid="ComboBoxMenu__notFound" disabled isMobile={isMobile}>
@@ -106,6 +108,8 @@ export class ComboBoxMenu<T> extends Component<ComboBoxMenuProps<T>> {
             </MenuItem>
           </Menu>
         );
+      }
+
       return null;
     }
 

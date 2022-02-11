@@ -49,6 +49,7 @@
     "eqeqeq": 2,
     "no-implicit-coercion": [2, { "allow": ["!!", "+"] }],
     "new-cap": 2,
+    "curly": 1,
     "no-restricted-syntax": [
       2,
       {
