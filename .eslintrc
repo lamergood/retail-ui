@@ -43,6 +43,7 @@
     "prefer-spread": 1,
     "no-useless-computed-key": 1,
     "no-else-return": 1,
+    "no-lonely-if": 1,
     "no-restricted-syntax": [
       2,
       {

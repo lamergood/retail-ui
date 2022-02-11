@@ -110,16 +110,16 @@ function getProxyHandler(accumulator: Set<keyof Theme>, dependencies: VariableDe
     get(target, prop, receiver) {
       const propName = prop as keyof Theme;
       ALL_USED_VARIABLES_SET.add(propName);
+
       if (accessLevel === 0) {
         rootProp = propName;
         accumulator.add(propName);
-      } else {
-        if (!dependencies[rootProp]) {
-          dependencies[rootProp] = [propName];
-        } else if (!dependencies[rootProp].includes(propName)) {
-          dependencies[rootProp].push(propName);
-        }
+      } else if (!dependencies[rootProp]) {
+        dependencies[rootProp] = [propName];
+      } else if (!dependencies[rootProp].includes(propName)) {
+        dependencies[rootProp].push(propName);
       }
+
       accessLevel++;
       const start = performance.now();
       const result = Reflect.get(target, prop, receiver);
