@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react';
 
+import { isNonNullable } from '../../lib/utils';
 import { ThemeContext } from '../../lib/theming/ThemeContext';
 import { Theme, ThemeIn } from '../../lib/theming/Theme';
 import { ThemeFactory } from '../../lib/theming/ThemeFactory';
@@ -216,7 +217,7 @@ export class ThemeContextPlayground extends React.Component<PlaygroundProps, Pla
 }
 
 function findPropertyDescriptor(theme: Theme, propName: keyof Theme) {
-  for (; theme != null; theme = Object.getPrototypeOf(theme)) {
+  for (; isNonNullable(theme); theme = Object.getPrototypeOf(theme)) {
     if (Object.prototype.hasOwnProperty.call(theme, propName)) {
       return Object.getOwnPropertyDescriptor(theme, propName) || {};
     }

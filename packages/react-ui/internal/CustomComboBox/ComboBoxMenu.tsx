@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import { isNonNullable } from '../../lib/utils';
 import { locale } from '../../lib/locale/decorators';
 import { Menu } from '../Menu';
 import { MenuItem, MenuItemState } from '../../components/MenuItem';
@@ -89,7 +90,7 @@ export class ComboBoxMenu<T> extends Component<ComboBoxMenuProps<T>> {
       );
     }
 
-    if ((items == null || items.length === 0) && renderNotFound) {
+    if ((!isNonNullable(items) || items.length === 0) && renderNotFound) {
       const notFoundValue = renderNotFound();
       if (renderAddButton)
         return (
