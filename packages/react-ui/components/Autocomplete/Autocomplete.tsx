@@ -1,3 +1,4 @@
+/* eslint-disable no-multi-assign */
 import React, { KeyboardEvent } from 'react';
 import PropTypes from 'prop-types';
 

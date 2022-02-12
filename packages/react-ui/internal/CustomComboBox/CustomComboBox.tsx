@@ -1,3 +1,4 @@
+/* eslint-disable no-multi-assign */
 import React from 'react';
 
 import { Nullable } from '../../typings/utility-types';
