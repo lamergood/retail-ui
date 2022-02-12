@@ -50,6 +50,8 @@
     "no-implicit-coercion": [2, { "allow": ["!!", "+"] }],
     "new-cap": 2,
     "curly": 1,
+    "array-callback-return": 2,
+    "no-nested-ternary": 2,
     "no-restricted-syntax": [
       2,
       {
