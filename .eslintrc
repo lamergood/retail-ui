@@ -57,6 +57,7 @@
     "no-param-reassign": 2,
     "object-shorthand": [2, "consistent"],
     "no-sequences": 2,
+    "no-useless-constructor": 2,
     "no-restricted-syntax": [
       2,
       {

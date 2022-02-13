@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-constructor */
 import { ColorFactory } from '../../lib/styles/ColorFactory';
 
 export class SpinnerFallbackAnimationRunner {
