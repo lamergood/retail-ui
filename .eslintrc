@@ -58,6 +58,7 @@
     "object-shorthand": [2, "consistent"],
     "no-sequences": 2,
     "no-useless-constructor": 2,
+    "no-bitwise": 2,
     "no-restricted-syntax": [
       2,
       {

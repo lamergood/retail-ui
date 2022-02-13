@@ -11,7 +11,6 @@ import { cx } from '../../lib/theming/Emotion';
 import { rootNode, TSetRootNode } from '../../lib/rootNode';
 
 import { styles, activeStyles, globalClasses } from './Button.styles';
-import { CORNERS } from './constant';
 
 export type ButtonSize = 'small' | 'medium' | 'large';
 export type ButtonType = 'button' | 'submit' | 'reset';
@@ -57,7 +56,7 @@ export interface ButtonProps extends CommonProps {
   children?: React.ReactNode;
 
   /** @ignore */
-  corners?: number;
+  corners?: React.CSSProperties;
 
   /**
    * Отключенное состояние кнопки.
@@ -168,10 +167,6 @@ export interface ButtonState {
 export class Button extends React.Component<ButtonProps, ButtonState> {
   public static __KONTUR_REACT_UI__ = 'Button';
   public static __BUTTON__ = true;
-  public static TOP_LEFT = CORNERS.TOP_LEFT;
-  public static TOP_RIGHT = CORNERS.TOP_RIGHT;
-  public static BOTTOM_RIGHT = CORNERS.BOTTOM_RIGHT;
-  public static BOTTOM_LEFT = CORNERS.BOTTOM_LEFT;
 
   public static defaultProps = {
     use: 'default' as ButtonUse,
@@ -228,7 +223,7 @@ export class Button extends React.Component<ButtonProps, ButtonState> {
 
   private renderMain() {
     const {
-      corners = 0,
+      corners,
       active,
       disabled,
       borderless,
@@ -278,10 +273,6 @@ export class Button extends React.Component<ButtonProps, ButtonState> {
         [styles.noRightPadding()]: _noRightPadding,
       }),
       style: {
-        borderTopLeftRadius: corners & CORNERS.TOP_LEFT ? 0 : undefined,
-        borderTopRightRadius: corners & CORNERS.TOP_RIGHT ? 0 : undefined,
-        borderBottomRightRadius: corners & CORNERS.BOTTOM_RIGHT ? 0 : undefined,
-        borderBottomLeftRadius: corners & CORNERS.BOTTOM_LEFT ? 0 : undefined,
         textAlign: align,
       },
       disabled: disabled || loading,
@@ -382,7 +373,7 @@ export class Button extends React.Component<ButtonProps, ButtonState> {
     return (
       <CommonWrapper rootNodeRef={this.setRootNode} {...this.props}>
         <span {...wrapProps}>
-          <button ref={this._ref} {...rootProps}>
+          <button ref={this._ref} {...rootProps} style={{ ...rootProps.style, ...corners }}>
             {innerShadowNode}
             {outlineNode}
             {loadingNode}
