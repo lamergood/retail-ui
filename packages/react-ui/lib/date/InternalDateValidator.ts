@@ -7,6 +7,21 @@ import {
   InternalDateComponentType,
 } from './types';
 
+const calculateStartDate = (startDate: number | null) => {
+  if (startDate) {
+    return startDate;
+  }
+
+  return -Infinity;
+};
+
+const calculateEndDate = (endDate: number | null) => {
+  if (endDate) {
+    return endDate;
+  }
+
+  return Infinity;
+};
 export class InternalDateValidator {
   public static checkForNull({ year, month, date }: InternalDateComponentsRaw, type?: InternalDateComponentType) {
     if (type !== undefined) {
@@ -62,9 +77,10 @@ export class InternalDateValidator {
     if (startDate === null && endDate === null) {
       return true;
     }
-    startDate = startDate || -Infinity;
-    endDate = endDate || Infinity;
-    return date >= startDate && date <= endDate;
+
+    const calculatedEndDate = calculateEndDate(endDate);
+    const calculatedStartDate = calculateStartDate(startDate);
+    return date >= calculatedStartDate && date <= calculatedEndDate;
   }
 
   public static checkRangePiecemeal(

@@ -24,8 +24,12 @@ export class ThemeFactory {
           keys.push(key);
         }
       });
+      // TODO: Find out how to fix that.
+      // TODO: Enable `no-param-reassign` rule.
+      // eslint-disable-next-line no-param-reassign
       theme = Object.getPrototypeOf(theme);
     }
+
     return keys.sort();
   }
 

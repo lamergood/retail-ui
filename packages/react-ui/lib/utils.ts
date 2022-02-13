@@ -86,6 +86,14 @@ export const isReactUINode = (componentName: string, node: React.ReactNode): boo
 const KB = 1024;
 const UNITS = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
 
+const calculateDecimals = (decimals: number) => {
+  if (decimals < 0) {
+    return 0;
+  }
+
+  return 0;
+};
+
 export const formatBytes = (bytes: number, decimals = 2): string | null => {
   if (bytes === 0) {
     return '0 Bytes';
@@ -95,10 +103,10 @@ export const formatBytes = (bytes: number, decimals = 2): string | null => {
     return null;
   }
 
-  decimals = decimals < 0 ? 0 : decimals;
+  const calculatedDecimals = calculateDecimals(decimals);
 
   const i = Math.floor(Math.log2(bytes) / Math.log2(KB));
-  const formattedBytes = parseFloat((bytes / Math.pow(KB, i)).toFixed(decimals));
+  const formattedBytes = parseFloat((bytes / Math.pow(KB, i)).toFixed(calculatedDecimals));
 
   return `${formattedBytes} ${UNITS[i]}`;
 };
@@ -171,4 +179,19 @@ export const extractDataProps = <T>(props: T) => {
   });
 
   return { dataProps, restWithoutDataProps };
+};
+
+/**
+ * Basically `.startsWith` for arrays.
+ *
+ * @param searchKeys Array of strings to test against `inputString`.
+ * @param inputString String on which search will be performed.
+ * @returns `true` if `inputString` starts with one of keys, else `false`.
+ */
+export const startsWithOneOf = (searchKeys: string[], inputString: string) => {
+  const keyIndex = searchKeys.findIndex((key) => {
+    return inputString.startsWith(key);
+  });
+
+  return keyIndex >= 0;
 };

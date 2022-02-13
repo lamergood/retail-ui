@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { isColor } from '../../lib/styles/ColorHelpers';
 import { DEFAULT_THEME as defaultVariables } from '../../lib/theming/themes/DefaultTheme';
 import { DARK_THEME as darkVariables } from '../../lib/theming/themes/DarkTheme';
 import { ComboBox, ComboBoxItem } from '../../components/ComboBox';
@@ -397,10 +398,6 @@ const ShowUnusedVariables = (props: { diff: string[] }) => {
     </div>
   );
 };
-
-function isColor(input: string) {
-  return !!input && (input.startsWith('#') || input.startsWith('rgb') || input.startsWith('hsl'));
-}
 
 function isGradient(input: string) {
   return !!input && input.startsWith('linear-gradient');

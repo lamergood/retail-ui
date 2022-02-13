@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { isIE11, isEdge } from '../../lib/client';
-import { Corners } from '../Button/Corners';
+import { CORNERS } from '../Button/constant';
 import { Nullable } from '../../typings/utility-types';
 import { isButton } from '../Button';
 import { CommonWrapper, CommonProps } from '../../internal/CommonWrapper';
@@ -19,6 +19,14 @@ interface GroupChildProps {
   width?: React.CSSProperties['width'];
   corners?: number;
 }
+
+const changeCornersIfButton = (child: React.ReactNode, buttonCorners: number) => {
+  if (isButton(child)) {
+    return React.cloneElement(child, { corners: buttonCorners });
+  }
+
+  return child;
+};
 
 @rootNode
 export class Group extends React.Component<GroupProps> {
@@ -58,17 +66,15 @@ export class Group extends React.Component<GroupProps> {
               [styles.itemFirst()]: child === first,
             });
 
-            let corners = 0;
+            let buttonCorners = 0;
             if (child !== first) {
-              corners |= Corners.TOP_LEFT | Corners.BOTTOM_LEFT;
+              buttonCorners |= CORNERS.TOP_LEFT | CORNERS.BOTTOM_LEFT;
             }
             if (child !== last) {
-              corners |= Corners.TOP_RIGHT | Corners.BOTTOM_RIGHT;
+              buttonCorners |= CORNERS.TOP_RIGHT | CORNERS.BOTTOM_RIGHT;
             }
 
-            if (isButton(child)) {
-              child = React.cloneElement(child, { corners });
-            }
+            const modifiedChild = changeCornersIfButton(child, buttonCorners);
 
             return (
               <div
@@ -78,7 +84,7 @@ export class Group extends React.Component<GroupProps> {
                   [styles.stretchFallback()]: Boolean(isWidthInPercent && this.props.width && (isIE11 || isEdge)),
                 })}
               >
-                <div className={itemCss}>{child}</div>
+                <div className={itemCss}>{modifiedChild}</div>
               </div>
             );
           })}

@@ -102,14 +102,19 @@ export class CurrencyHelper {
   }
 
   public static formatString(value: string, formattingOptions?: Nullable<DecimalFormattingOptions>): string {
-    const options = CurrencyHelper.getOptions(formattingOptions);
-    value = CurrencyHelper.unformatString(value);
-    const destructed = CurrencyHelper.destructString(value) || { sign: '', integer: '', delimiter: '', fraction: '' };
+    const unformattedValue = CurrencyHelper.unformatString(value);
+    const destructed = CurrencyHelper.destructString(unformattedValue) || {
+      sign: '',
+      integer: '',
+      delimiter: '',
+      fraction: '',
+    };
 
     const { sign, integer, delimiter } = destructed;
     let fraction = destructed.fraction;
     let fractionDigits = fraction.length;
 
+    const options = CurrencyHelper.getOptions(formattingOptions);
     if (options.hideTrailingZeros) {
       fraction = fraction.replace(/0+$/, '');
       fractionDigits = fraction.length;
@@ -140,8 +145,8 @@ export class CurrencyHelper {
   }
 
   public static isValidString(value: string, options: DecimalOptions) {
-    value = CurrencyHelper.unformatString(value);
-    const destructed = CurrencyHelper.destructString(value);
+    const unformattedValue = CurrencyHelper.unformatString(value);
+    const destructed = CurrencyHelper.destructString(unformattedValue);
 
     if (!destructed) {
       return false;
@@ -176,9 +181,9 @@ export class CurrencyHelper {
   }
 
   public static extractValid(value: string, options: DecimalOptions): string {
-    value = CurrencyHelper.unformatString(value);
+    const unformattedValue = CurrencyHelper.unformatString(value);
 
-    const match = /[-.\d]+/.exec(value);
+    const match = /[-.\d]+/.exec(unformattedValue);
 
     if (!match) {
       return '';

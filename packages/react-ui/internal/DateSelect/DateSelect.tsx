@@ -45,6 +45,18 @@ export interface DateSelectState {
   nodeTop: number;
 }
 
+const calculatePos = (pos: number, minPos: number, maxPos: number) => {
+  if (minPos >= pos) {
+    return minPos;
+  }
+
+  if (maxPos <= pos) {
+    return maxPos;
+  }
+
+  return pos;
+};
+
 @locale('DatePicker', DatePickerLocaleHelper)
 export class DateSelect extends React.PureComponent<DateSelectProps, DateSelectState> {
   public static __KONTUR_REACT_UI__ = 'DateSelect';
@@ -466,16 +478,12 @@ export class DateSelect extends React.PureComponent<DateSelectProps, DateSelectS
 
     const minPos = this.getMinPos() - top;
     const maxPos = this.getMaxPos() - top - height + itemHeight;
-    if (minPos >= pos) {
-      pos = minPos;
-    }
-    if (maxPos <= pos) {
-      pos = maxPos;
-    }
-    const topCapped = pos <= minPos;
-    const botCapped = pos >= maxPos;
 
-    this.setState({ pos, top, height, topCapped, botCapped });
+    const calculatedPos = calculatePos(pos, minPos, maxPos);
+    const topCapped = calculatedPos <= minPos;
+    const botCapped = calculatedPos >= maxPos;
+
+    this.setState({ pos: calculatedPos, top, height, topCapped, botCapped });
   }
 
   private getMinPos() {

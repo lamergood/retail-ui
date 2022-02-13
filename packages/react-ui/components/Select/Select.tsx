@@ -685,14 +685,25 @@ function filterItem(value: any, item: any, pattern: string) {
   if (item === Select.SEP) {
     return false;
   }
+
+  // TODO: Find out what's going on in this `if` statement`.
+  // TODO: Enable no-param-reassign rule.
+  // eslint-disable-next-line no-param-reassign
   if (React.isValidElement(item) || (isFunction(item) && React.isValidElement((item = item())))) {
+    // TODO: Enable no-param-reassign rule.
+    // eslint-disable-next-line no-param-reassign
     item = reactGetTextContent(item);
   }
+
   if (typeof item === 'number') {
+    // TODO: Enable no-param-reassign rule.
+    // eslint-disable-next-line no-param-reassign
     item = item.toString(10);
   }
+
   if (typeof item !== 'string') {
     return false;
   }
+
   return item.toLowerCase().indexOf(pattern) !== -1;
 }
