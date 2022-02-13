@@ -55,6 +55,7 @@
     "no-multi-assign": 2,
     "max-statements-per-line": [2, { "max": 1 }],
     "no-param-reassign": 2,
+    "object-shorthand": [2, "consistent"],
     "no-restricted-syntax": [
       2,
       {

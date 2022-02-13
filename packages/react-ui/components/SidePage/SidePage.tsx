@@ -298,9 +298,9 @@ export class SidePage extends React.Component<SidePageProps, SidePageState> {
 
     this.setState({
       stackPosition: stack.indexOf(this),
-      hasMargin,
-      hasShadow,
-      hasBackground,
+      hasMargin: hasMargin,
+      hasShadow: hasShadow,
+      hasBackground: hasBackground,
     });
   };
 

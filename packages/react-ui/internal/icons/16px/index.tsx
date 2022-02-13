@@ -10,12 +10,9 @@ export interface SvgIconProps extends React.HTMLAttributes<HTMLSpanElement> {
   ref?: any;
 }
 
-const SvgIcon = React.forwardRef<HTMLElement, SvgIconProps>((
-  { color, size, style, children, ...rest },
-  ref,
-) => {
+const SvgIcon = React.forwardRef<HTMLElement, SvgIconProps>(({ color, size, style, children, ...rest }, ref) => {
   return (
-    <span ref={ref} className={styles.root()} style={{ ...style, fontSize: size, color }} {...rest}>
+    <span ref={ref} className={styles.root()} style={{ ...style, fontSize: size, color: color }} {...rest}>
       {React.cloneElement(children as JSX.Element, {
         className: styles.icon(),
         fill: 'currentColor',
@@ -25,10 +22,7 @@ const SvgIcon = React.forwardRef<HTMLElement, SvgIconProps>((
   );
 });
 
-export const ArrowChevronDownIcon = React.forwardRef<HTMLElement, SvgIconProps>((
-  props,
-  ref,
-) => {
+export const ArrowChevronDownIcon = React.forwardRef<HTMLElement, SvgIconProps>((props, ref) => {
   return (
     <SvgIcon ref={ref} {...props}>
       <svg viewBox="0 0 16 16" style={{ marginBottom: '-0.1875em' }}>
@@ -56,10 +50,7 @@ export const ArrowChevronUpIcon = React.forwardRef<HTMLElement, SvgIconProps>((p
   );
 });
 
-export const ArrowChevronRightIcon = React.forwardRef<HTMLElement, SvgIconProps>((
-  props,
-  ref,
-) => {
+export const ArrowChevronRightIcon = React.forwardRef<HTMLElement, SvgIconProps>((props, ref) => {
   return (
     <SvgIcon ref={ref} {...props}>
       <svg viewBox="0 0 16 16">
@@ -72,10 +63,7 @@ export const ArrowChevronRightIcon = React.forwardRef<HTMLElement, SvgIconProps>
   );
 });
 
-export const ArrowTriangleDownIcon = React.forwardRef<HTMLElement, SvgIconProps>((
-  props,
-  ref,
-) => {
+export const ArrowTriangleDownIcon = React.forwardRef<HTMLElement, SvgIconProps>((props, ref) => {
   return (
     <SvgIcon ref={ref} {...props}>
       <svg viewBox="0 0 16 16">
@@ -85,10 +73,7 @@ export const ArrowTriangleDownIcon = React.forwardRef<HTMLElement, SvgIconProps>
   );
 });
 
-export const ArrowTriangleUpIcon = React.forwardRef<HTMLElement, SvgIconProps>((
-  props,
-  ref,
-) => {
+export const ArrowTriangleUpIcon = React.forwardRef<HTMLElement, SvgIconProps>((props, ref) => {
   return (
     <SvgIcon ref={ref} {...props}>
       <svg viewBox="0 0 16 16">
@@ -98,10 +83,7 @@ export const ArrowTriangleUpIcon = React.forwardRef<HTMLElement, SvgIconProps>((
   );
 });
 
-export const ArrowTriangleUpDownIcon = React.forwardRef<HTMLElement, SvgIconProps>((
-  props,
-  ref,
-) => {
+export const ArrowTriangleUpDownIcon = React.forwardRef<HTMLElement, SvgIconProps>((props, ref) => {
   return (
     <SvgIcon ref={ref} {...props}>
       <svg viewBox="0 0 16 16">

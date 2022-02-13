@@ -756,7 +756,7 @@ describe('ComboBox', () => {
         requestStatus: ComboBoxRequestStatus.Success,
         loading: false,
         opened: true,
-        items,
+        items: items,
       });
     });
 
@@ -776,7 +776,7 @@ describe('ComboBox', () => {
         requestStatus: ComboBoxRequestStatus.Success,
         loading: false,
         opened: true,
-        items,
+        items: items,
       });
     });
 
@@ -805,7 +805,7 @@ describe('ComboBox', () => {
         requestStatus: ComboBoxRequestStatus.Success,
         loading: false,
         opened: true,
-        items,
+        items: items,
       });
     });
 

@@ -20,7 +20,7 @@ describe('Link', () => {
     it('does not call `onClick` when link clicked', () => {
       const onClick = jest.fn();
 
-      const wrapper = render({ onClick, disabled: true });
+      const wrapper = render({ onClick: onClick, disabled: true });
       wrapper.find('a').simulate('click');
 
       expect(onClick).toHaveBeenCalledTimes(0);
@@ -29,7 +29,7 @@ describe('Link', () => {
     it('does not call `onClick` when Enter pressed', () => {
       const onClick = jest.fn();
 
-      const wrapper = render({ onClick, disabled: true });
+      const wrapper = render({ onClick: onClick, disabled: true });
       wrapper.find('a').simulate('focus').simulate('keydown', { key: 'Enter' });
 
       expect(onClick).toHaveBeenCalledTimes(0);

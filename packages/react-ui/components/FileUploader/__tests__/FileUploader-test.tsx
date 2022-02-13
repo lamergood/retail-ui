@@ -129,7 +129,7 @@ describe('FileUploader', () => {
       it('should handle onAttach, when all files aren"t valid', async () => {
         const onAttach = jest.fn();
         const component = render({
-          onAttach,
+          onAttach: onAttach,
           validateBeforeUpload: () => Promise.resolve('validation error'),
           multiple: true,
         });
@@ -159,7 +159,7 @@ describe('FileUploader', () => {
     describe('onRemove', () => {
       it('should handle onRemove, when click delete button', async () => {
         const onRemove = jest.fn();
-        const component = render({ onRemove, multiple: true });
+        const component = render({ onRemove: onRemove, multiple: true });
 
         await addFiles(component, [file]);
         await removeFile(component);
@@ -206,7 +206,7 @@ describe('FileUploader', () => {
 
       it('should handle onValueChange with all attached files for multiple control', async () => {
         const onValueChange = jest.fn();
-        const component = render({ onValueChange, multiple: true });
+        const component = render({ onValueChange: onValueChange, multiple: true });
 
         await addFiles(component, [file]);
 
@@ -305,7 +305,13 @@ describe('FileUploader', () => {
           const result = count % 2 === 0 ? null : 'Ошибка';
           return Promise.resolve(result);
         };
-        component = render({ request, onRequestSuccess, onRequestError, validateBeforeUpload, multiple: true });
+        component = render({
+          request: request,
+          onRequestSuccess: onRequestSuccess,
+          onRequestError: onRequestError,
+          validateBeforeUpload: validateBeforeUpload,
+          multiple: true,
+        });
 
         await addFiles(component, [file, file]);
 
@@ -318,9 +324,9 @@ describe('FileUploader', () => {
 
       it('shouldn"t handle request after selection of invalid file', async () => {
         component = render({
-          request,
-          onRequestSuccess,
-          onRequestError,
+          request: request,
+          onRequestSuccess: onRequestSuccess,
+          onRequestError: onRequestError,
           validateBeforeUpload: () => Promise.resolve('ERROR'),
         });
 
@@ -348,7 +354,7 @@ describe('FileUploader', () => {
       it('should handle validateBeforeUpload for every files', async () => {
         const request = jest.fn(() => Promise.resolve());
         const validateBeforeUpload = jest.fn(() => Promise.resolve(null));
-        const component = render({ request, validateBeforeUpload, multiple: true });
+        const component = render({ request: request, validateBeforeUpload: validateBeforeUpload, multiple: true });
 
         await addFiles(component, [file, file]);
 

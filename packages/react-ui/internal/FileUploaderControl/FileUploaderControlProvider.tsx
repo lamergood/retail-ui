@@ -54,7 +54,7 @@ export const FileUploaderControlProvider = (props: PropsWithChildren<FileUploade
     (fileId: string, status: FileUploaderFileStatus) => {
       setFiles((files) =>
         updateFile(files, fileId, (file) => ({
-          status,
+          status: status,
           validationResult:
             status === FileUploaderFileStatus.Error
               ? FileUploaderFileValidationResult.error(locale.requestErrorText)
@@ -92,12 +92,12 @@ export const FileUploaderControlProvider = (props: PropsWithChildren<FileUploade
   return (
     <FileUploaderControlContext.Provider
       value={useMemoObject({
-        setFileStatus,
-        files,
+        setFileStatus: setFileStatus,
+        files: files,
         setFiles: handleExternalSetFiles,
-        removeFile,
-        setFileValidationResult,
-        reset,
+        removeFile: removeFile,
+        setFileValidationResult: setFileValidationResult,
+        reset: reset,
       })}
     >
       {children}

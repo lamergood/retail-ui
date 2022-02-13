@@ -41,7 +41,7 @@ function addCallbackToMQListener(mediaQuery: string, callback: (e: MediaQueryLis
 
 function createMQListener(mediaQuery: string, callback: (e: MediaQueryListEvent) => void) {
   const mql = window.matchMedia(mediaQuery);
-  const newMediaQueryInfo: mediaQueryData = { mql, listeners: [callback] };
+  const newMediaQueryInfo: mediaQueryData = { mql: mql, listeners: [callback] };
 
   eventListenersMap.set(mediaQuery, newMediaQueryInfo);
   eventListenersMap.get(mediaQuery)?.mql.addEventListener('change', changeCallback);

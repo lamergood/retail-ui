@@ -124,8 +124,8 @@ function _getViewProperty(getProperty: (e: HTMLElement) => number): number {
 }
 
 export const PopupHelper = {
-  getPositionObject,
-  getElementAbsoluteRect,
+  getPositionObject: getPositionObject,
+  getElementAbsoluteRect: getElementAbsoluteRect,
   isFullyVisible: isAbsoluteRectFullyVisible,
-  canBecomeFullyVisible,
+  canBecomeFullyVisible: canBecomeFullyVisible,
 };

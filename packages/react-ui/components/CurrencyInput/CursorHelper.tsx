@@ -43,16 +43,16 @@ export class CursorHelper {
 
     if (start === end) {
       return {
-        start,
-        end,
+        start: start,
+        end: end,
         direction: 'none',
       };
     }
 
     if (start < end) {
       return {
-        start,
-        end,
+        start: start,
+        end: end,
         direction: selection.direction === 'backward' ? 'backward' : 'forward',
       };
     }

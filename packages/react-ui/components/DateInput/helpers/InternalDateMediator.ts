@@ -21,8 +21,8 @@ export class InternalDateMediator {
       this.iDate.setRangeStart(
         props.minDate
           ? new InternalDate({
-              order,
-              separator,
+              order: order,
+              separator: separator,
               value: props.minDate,
             })
           : null,
@@ -32,8 +32,8 @@ export class InternalDateMediator {
       this.iDate.setRangeEnd(
         props.maxDate
           ? new InternalDate({
-              order,
-              separator,
+              order: order,
+              separator: separator,
               value: props.maxDate,
             })
           : null,
