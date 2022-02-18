@@ -2,6 +2,7 @@ import React from 'react';
 import { Button } from '@skbkontur/react-ui/components/Button';
 import { Input } from '@skbkontur/react-ui/components/Input';
 import { Group } from '@skbkontur/react-ui/components/Group';
+import { isNonNullable } from 'react-ui/lib/utils';
 
 import {
   createValidator,
@@ -19,7 +20,7 @@ interface State {
 const getDuplicatesFor = (items: string[], index: number): number[] => {
   return items
     .map((x, i) => (x === items[index] && i !== index ? i : null))
-    .filter((x) => x != null) as number[];
+    .filter((x) => isNonNullable(x)) as number[];
 };
 
 const validate = createValidator<string[]>((b, a) => {

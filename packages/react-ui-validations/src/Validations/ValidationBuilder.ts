@@ -1,4 +1,6 @@
+/* eslint-disable no-useless-constructor */
 import React from 'react';
+import { isNonNullable } from 'react-ui/lib/utils';
 
 import { Nullable } from '../../typings/Types';
 import { ValidationBehaviour, ValidationLevel } from '../ValidationWrapperInternal';
@@ -23,7 +25,7 @@ export class ValidationBuilder<TRoot, T> {
 
   public prop<TChild>(lambdaPath: LambdaPath<T, TChild>, rule: ValidationRule<TRoot, TChild>): void {
     const info = this.getPathInfo(lambdaPath);
-    if (info == null) {
+    if (!isNonNullable(info)) {
       return;
     }
 
@@ -33,7 +35,7 @@ export class ValidationBuilder<TRoot, T> {
 
   public array<TChild>(lambdaPath: LambdaPath<T, TChild[]>, rule: ItemValidationRule<TRoot, TChild>): void {
     const info = this.getPathInfo(lambdaPath);
-    if (info == null || !Array.isArray(info.data)) {
+    if (!isNonNullable(info) || !Array.isArray(info.data)) {
       return;
     }
 
@@ -74,7 +76,7 @@ export class ValidationBuilder<TRoot, T> {
     if (isValidationInfo(messageOrValidationInfo)) {
       validationWriter.set(messageOrValidationInfo);
     } else {
-      validationWriter.set({ message: messageOrValidationInfo, type, level, independent });
+      validationWriter.set({ message: messageOrValidationInfo, type: type, level: level, independent: independent });
     }
   }
 
@@ -83,13 +85,13 @@ export class ValidationBuilder<TRoot, T> {
 
     let data: any = this.data;
     for (const part of path) {
-      if (data == null) {
+      if (!isNonNullable(data)) {
         return null;
       }
       data = data[part];
     }
 
-    return { data, path: [...this.path, ...path] };
+    return { data: data, path: [...this.path, ...path] };
   }
 }
 

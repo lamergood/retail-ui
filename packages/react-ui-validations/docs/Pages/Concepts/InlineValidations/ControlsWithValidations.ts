@@ -58,7 +58,7 @@ function prepareProps<TValue, TProps extends { value?: any }>(
 
   return {
     validationWrapperProps: {
-      validationInfo,
+      validationInfo: validationInfo,
       renderMessage: renderErrorMessage,
     },
     controlProps: rest as any,

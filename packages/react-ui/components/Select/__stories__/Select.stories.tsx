@@ -437,7 +437,7 @@ WithSearchAndVariousWidth.parameters = {
   creevey: {
     captureElement: '#test-element',
     tests: {
-      async 'search'() {
+      async search() {
         const root = await this.browser.findElement({ css: '[data-tid="root"]' });
         const select = await this.browser.findElement({ css: '[data-comp-name~="Select"]' });
 

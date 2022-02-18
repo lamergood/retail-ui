@@ -1,3 +1,5 @@
+import { isNonNullable } from 'react-ui/lib/utils';
+
 import { Nullable, Omit } from '../typings/Types';
 
 import { ScrollOffset } from './ValidationContainer';
@@ -56,8 +58,8 @@ function smoothScroll(element: HTMLElement, x: number, y: number): Promise<void>
       startY: window.scrollY || window.pageYOffset,
       method: scrollWindow,
       startTime: now(),
-      x,
-      y,
+      x: x,
+      y: y,
     };
   } else {
     context = {
@@ -66,8 +68,8 @@ function smoothScroll(element: HTMLElement, x: number, y: number): Promise<void>
       startY: element.scrollTop,
       method: scrollElement,
       startTime: now(),
-      x,
-      y,
+      x: x,
+      y: y,
     };
   }
 
@@ -104,11 +106,19 @@ function step(context: StepContent) {
 
 const ScrollTime = 468;
 
-const scrollWindow = isBrowser
-  ? typeof window.scroll === 'function'
-    ? (_: any, x: number, y: number) => window.scroll(x, y)
-    : (_: any, x: number, y: number) => window.scrollTo(x, y)
-  : () => undefined;
+const getScrollWindow = (isBrowser: boolean) => {
+  if (isBrowser) {
+    if (typeof window.scroll === 'function') {
+      return (_: any, x: any, y: any) => window.scroll(x, y);
+    }
+
+    return (_: any, x: any, y: any) => window.scrollTo(x, y);
+  }
+
+  return () => undefined;
+};
+
+const scrollWindow = getScrollWindow(isBrowser);
 
 const now =
   isBrowser && window.performance && window.performance.now
@@ -125,9 +135,10 @@ function ease(time: number): number {
 }
 
 function getDocumentBodyStrict(): HTMLElement {
-  if (document.body == null) {
+  if (!isNonNullable(document.body)) {
     throw new Error('Scrolling can be used only in browser');
   }
+
   return document.body;
 }
 
@@ -137,7 +148,7 @@ function findScrollableParent(el: HTMLElement): HTMLElement {
   let hasVisibleOverflow: Nullable<boolean>;
   let currentElement: HTMLElement = el;
   do {
-    if (currentElement.parentElement == null || !(currentElement.parentElement instanceof HTMLElement)) {
+    if (!isNonNullable(currentElement.parentElement) || !(currentElement.parentElement instanceof HTMLElement)) {
       return getDocumentBodyStrict();
     }
     currentElement = currentElement.parentElement;

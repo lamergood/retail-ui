@@ -91,7 +91,7 @@ export default class FormValidityDemo extends React.Component<{}, State> {
   };
 
   private validate = (v: string, type: ValidationBehaviour): Nullable<ValidationInfo> => {
-    return !/^\d*$/.test(v) ? { message: 'Только цифры', type } : null;
+    return !/^\d*$/.test(v) ? { message: 'Только цифры', type: type } : null;
   };
 
   private handleChange = (value: Partial<State>) => {

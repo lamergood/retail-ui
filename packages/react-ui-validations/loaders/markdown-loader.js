@@ -8,12 +8,12 @@ class Renderer {
   splitTree(tree) {
     const [type, attrs, ...content] = tree;
     if (Array.isArray(attrs)) {
-      return { type, attrs: {}, content: [attrs, ...content] };
+      return { type: type, attrs: {}, content: [attrs, ...content] };
     }
     if (typeof attrs === 'object') {
       return { type: type, attrs: attrs, content: content };
     }
-    return { type, attrs: {}, content: [attrs, ...content] };
+    return { type: type, attrs: {}, content: [attrs, ...content] };
   }
 
   renderTree(tree) {
