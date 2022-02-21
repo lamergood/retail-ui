@@ -1,4 +1,4 @@
-import { isNonNullable } from 'react-ui/lib/utils';
+import { isNonNullable } from '../src/utils/isNonNullable';
 
 declare function require(name: string): any;
 

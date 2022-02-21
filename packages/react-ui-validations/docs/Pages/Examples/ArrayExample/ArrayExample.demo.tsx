@@ -2,8 +2,8 @@ import React from 'react';
 import { Button } from '@skbkontur/react-ui/components/Button';
 import { Input } from '@skbkontur/react-ui/components/Input';
 import { Group } from '@skbkontur/react-ui/components/Group';
-import { isNonNullable } from 'react-ui/lib/utils';
 
+import { isNonNullable } from '../../../../src/utils/isNonNullable';
 import {
   createValidator,
   text,

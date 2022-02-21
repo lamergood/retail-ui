@@ -1,5 +1,6 @@
 import React from 'react';
-import { isNonNullable } from 'react-ui/lib/utils';
+
+import { isNonNullable } from '../src/utils/isNonNullable';
 
 import { ValidationWrapperInternal } from './ValidationWrapperInternal';
 import { ScrollOffset } from './ValidationContainer';

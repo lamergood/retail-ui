@@ -1,5 +1,4 @@
-import { isNonNullable } from 'react-ui/lib/utils';
-
+import { isNonNullable } from '../src/utils/isNonNullable';
 import { Nullable, Omit } from '../typings/Types';
 
 import { ScrollOffset } from './ValidationContainer';
