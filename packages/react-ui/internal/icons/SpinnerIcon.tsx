@@ -18,6 +18,9 @@ export interface SpinnerIconProps {
   className: string;
   size: 'mini' | 'normal' | 'big';
   dimmed?: boolean;
+  inline?: boolean;
+  width?: number;
+  color?: React.CSSProperties['color'];
 }
 
 export const sizes = {
@@ -38,8 +41,8 @@ export const sizes = {
   },
 };
 
-export const SpinnerIcon = ({ size, className, dimmed }: SpinnerIconProps) => {
-  const currentSize = sizes[size];
+export const SpinnerIcon = ({ size, className, dimmed, inline, width, color }: SpinnerIconProps) => {
+  const currentSize = inline ? sizes.mini : sizes[size];
   const svgRef = React.useRef<SVGSVGElement>(null);
 
   if (isIE11 && !isTestEnv) {
@@ -84,16 +87,19 @@ export const SpinnerIcon = ({ size, className, dimmed }: SpinnerIconProps) => {
   }
 
   return (
-    <span className={styles.root()}>
+    <span className={cx(styles.root(), { [styles.rootInline()]: inline })}>
       <svg
         viewBox={`0 0 ${currentSize.size} ${currentSize.size}`}
-        className={cx(styles.icon(), className)}
+        className={cx(styles.icon(), className, {
+          [styles.iconInline()]: inline,
+        })}
         width={currentSize.size}
         height={currentSize.size}
         fill="none"
+        stroke={color}
         strokeDasharray={`${(10 * currentSize.radius) / 6}, ${(27 * currentSize.radius) / 6}`}
         strokeDashoffset="0"
-        strokeWidth={currentSize.width}
+        strokeWidth={width || currentSize.width}
         ref={svgRef}
       >
         <circle cx={currentSize.size / 2} cy={currentSize.size / 2} r={currentSize.radius} />

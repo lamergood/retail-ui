@@ -8,6 +8,7 @@ import { isFunction } from '../../lib/utils';
 import { ZIndex } from '../../internal/ZIndex';
 import { CommonWrapper, CommonProps } from '../../internal/CommonWrapper';
 import { cx } from '../../lib/theming/Emotion';
+import { rootNode, TSetRootNode } from '../../lib/rootNode';
 
 import { styles } from './Sticky.styles';
 
@@ -34,6 +35,7 @@ export interface StickyState {
   relativeTop: number;
 }
 
+@rootNode
 export class Sticky extends React.Component<StickyProps, StickyState> {
   public static __KONTUR_REACT_UI__ = 'Sticky';
 
@@ -66,6 +68,7 @@ export class Sticky extends React.Component<StickyProps, StickyState> {
   private inner: Nullable<HTMLElement>;
   private layoutSubscription: { remove: Nullable<() => void> } = { remove: null };
   private reflowCounter = 0;
+  private setRootNode!: TSetRootNode;
 
   public componentDidMount() {
     this.reflow();
@@ -112,7 +115,7 @@ export class Sticky extends React.Component<StickyProps, StickyState> {
     }
 
     return (
-      <CommonWrapper {...this.props}>
+      <CommonWrapper rootNodeRef={this.setRootNode} {...this.props}>
         <div ref={this.refWrapper} className={styles.wrapper()}>
           <ZIndex
             priority="Sticky"
@@ -136,7 +139,12 @@ export class Sticky extends React.Component<StickyProps, StickyState> {
 
   private refInner = (ref: Nullable<HTMLElement>) => (this.inner = ref);
 
-  private reflow = () => {
+  /**
+   * Пересчитать габариты и позицию залипшего элемента
+   *
+   * @public
+   */
+  public reflow = () => {
     const { documentElement } = document;
 
     if (!documentElement) {
@@ -151,7 +159,7 @@ export class Sticky extends React.Component<StickyProps, StickyState> {
     const { width, height } = this.inner.getBoundingClientRect();
     const { offset, getStop, side } = this.props;
     const { fixed: prevFixed, height: prevHeight = height } = this.state;
-    const fixed = side === 'top' ? top < offset : bottom > windowHeight - offset;
+    const fixed = side === 'top' ? top < offset : Math.floor(bottom) > windowHeight - offset;
 
     this.setState({ fixed, left });
 

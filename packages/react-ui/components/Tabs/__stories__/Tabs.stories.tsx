@@ -73,7 +73,13 @@ class RouterTabs extends React.Component<any> {
   }
 }
 
-const MyLink = (props: React.InputHTMLAttributes<HTMLAnchorElement>) => <a {...props}>{props.children}</a>;
+const MyLink = React.forwardRef<any, any>(function MyLink(props: any, ref) {
+  return (
+    <a ref={ref} {...props}>
+      {props.children}
+    </a>
+  );
+});
 
 class TabsWithMyLink extends React.Component<any, any> {
   public state = {
@@ -91,17 +97,32 @@ class TabsWithMyLink extends React.Component<any, any> {
         }
         vertical={this.props.vertical}
       >
-        <Tab id="fuji" component={(props) => <MyLink {...props} to="/1" />}>
+        <Tab
+          id="fuji"
+          component={React.forwardRef<any, any>(function Component(props: any, ref) {
+            return <MyLink ref={ref} {...props} to="/1" />;
+          })}
+        >
           <span role="img" aria-label="fuji">
             🌋&nbsp;&nbsp;Fuji
           </span>
         </Tab>
-        <Tab id="tahat" component={(props) => <MyLink {...props} to="/2" />}>
+        <Tab
+          id="tahat"
+          component={React.forwardRef<any, any>(function Component(props: any, ref) {
+            return <MyLink ref={ref} {...props} to="/2" />;
+          })}
+        >
           <span role="img" aria-label="tahat">
             ⛰&nbsp;&nbsp;Tahat
           </span>
         </Tab>
-        <Tab id="alps" component={(props) => <MyLink {...props} to="/3" />}>
+        <Tab
+          id="alps"
+          component={React.forwardRef<any, any>(function Component(props: any, ref) {
+            return <MyLink ref={ref} {...props} to="/3" />;
+          })}
+        >
           <span role="img" aria-label="alps">
             🗻&nbsp;&nbsp;Alps
           </span>
@@ -397,7 +418,7 @@ Simple.storyName = 'simple';
 
 Simple.parameters = {
   creevey: {
-    skip: [{ in: ['ie11', 'ie118px'], tests: 'hovered' }],
+    skip: [{ in: ['ie11', 'ie118px', 'ie11Dark'], tests: 'hovered' }],
     tests: {
       ...tabsTests,
       async ['move focus forward']() {
@@ -489,7 +510,9 @@ HrefsSecond.parameters = { creevey: { skip: [true] } };
 
 export const Vertical: Story = () => <UncTabs vertical />;
 Vertical.storyName = 'vertical';
-Vertical.parameters = { creevey: { skip: [{ in: ['ie11', 'ie118px'], tests: 'hovered' }], tests: tabsTests } };
+Vertical.parameters = {
+  creevey: { skip: [{ in: ['ie11', 'ie118px', 'ie11Dark'], tests: 'hovered' }], tests: tabsTests },
+};
 
 export const WithComponent = () => <TabsWithMyLink />;
 WithComponent.storyName = 'with component';
@@ -501,7 +524,9 @@ WithUnexpectedTabSizeChange.parameters = { creevey: { skip: [true] } };
 
 export const WithDisabledTab: Story = () => <DisabledTab />;
 WithDisabledTab.storyName = 'with disabled tab';
-WithDisabledTab.parameters = { creevey: { skip: [{ in: ['ie11', 'ie118px'], tests: 'hovered' }], tests: tabsTests } };
+WithDisabledTab.parameters = {
+  creevey: { skip: [{ in: ['ie11', 'ie118px', 'ie11Dark'], tests: 'hovered' }], tests: tabsTests },
+};
 
 export const TabsInModalStory = () => <TabsInModal />;
 TabsInModalStory.storyName = 'tabs in modal';

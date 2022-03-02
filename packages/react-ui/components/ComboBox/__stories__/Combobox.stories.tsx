@@ -14,6 +14,9 @@ import { Gapped } from '../../Gapped';
 import { MenuHeader } from '../../MenuHeader';
 import { delay } from '../../../lib/utils';
 import { Tooltip } from '../../Tooltip';
+import { ThemeContext } from '../../../lib/theming/ThemeContext';
+import { ThemeFactory } from '../../../lib/theming/ThemeFactory';
+import { rootNode, TSetRootNode } from '../../../lib/rootNode';
 
 const { getCities } = require('../__mocks__/getCities.js');
 
@@ -28,7 +31,12 @@ SimpleComboboxStory.storyName = 'simple combobox';
 
 SimpleComboboxStory.parameters = {
   creevey: {
-    skip: [{ in: ['ie11', 'ie11Flat', 'ie118px', 'ie11Flat8px'], tests: ['hovered', 'selected_2', 'select_1'] }],
+    skip: [
+      {
+        in: ['ie11', 'ie118px', 'ie11Flat8px', 'ie11Dark'],
+        tests: ['hovered', 'selected_2', 'select_1'],
+      },
+    ],
     tests: {
       async plain() {
         await this.expect(await this.takeScreenshot()).to.matchImage('plain');
@@ -272,7 +280,7 @@ OpenToTop.storyName = 'open to top';
 
 OpenToTop.parameters = {
   creevey: {
-    skip: [{ in: ['ie11', 'ie11Flat', 'ie118px', 'ie11Flat8px'], tests: 'hovered' }],
+    skip: [{ in: ['ie11', 'ie118px', 'ie11Flat8px', 'ie11Dark'], tests: 'hovered' }],
     tests: {
       async plain() {
         const element = await this.browser.findElement({ css: '[data-tid="container"]' });
@@ -797,6 +805,7 @@ interface SimpleComboboxState {
   value: Nullable<{ value: number; label: string }>;
 }
 
+@rootNode
 class SimpleCombobox extends React.Component<SimpleComboboxProps & ComboBoxProps<any>, SimpleComboboxState> {
   public static defaultProps = {
     ...ComboBox.defaultProps,
@@ -805,11 +814,13 @@ class SimpleCombobox extends React.Component<SimpleComboboxProps & ComboBoxProps
   public state: SimpleComboboxState = {
     value: this.props.noInitialValue ? null : { value: 1, label: 'First' },
   };
+  private setRootNode!: TSetRootNode;
 
   public render() {
     return (
       <ComboBox
         {...this.props}
+        ref={this.setRootNode}
         value={this.state.value}
         getItems={this.getItems}
         onValueChange={(value) => this.setState({ value })}
@@ -1125,4 +1136,44 @@ WithTooltip.parameters = {
       },
     },
   },
+};
+
+export const MobileSimple = () => (
+  <ThemeContext.Consumer>
+    {(theme) => {
+      return (
+        <ThemeContext.Provider
+          value={ThemeFactory.create(
+            {
+              mobileMediaQuery: '(max-width: 576px)',
+            },
+            theme,
+          )}
+        >
+          <SimpleCombobox />
+          <div style={{ height: 15 }} />
+          <ComplexCombobox />
+          <div style={{ height: 15 }} />
+          <TestComboBox
+            onSearch={search}
+            renderItem={renderValue}
+            renderAddButton={(query) =>
+              query && (
+                <MenuItem key={'mobileAddButton'} isMobile onClick={() => alert(query)}>
+                  Добавить {query}
+                </MenuItem>
+              )
+            }
+          />
+        </ThemeContext.Provider>
+      );
+    }}
+  </ThemeContext.Consumer>
+);
+MobileSimple.title = 'Mobile combobox stories';
+MobileSimple.parameters = {
+  viewport: {
+    defaultViewport: 'iphone',
+  },
+  creevey: { skip: [true] },
 };

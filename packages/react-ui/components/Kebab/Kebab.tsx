@@ -6,7 +6,7 @@ import * as LayoutEvents from '../../lib/LayoutEvents';
 import { keyListener } from '../../lib/events/keyListener';
 import { PopupMenu, PopupMenuCaptionProps } from '../../internal/PopupMenu';
 import { Nullable } from '../../typings/utility-types';
-import { PopupPosition } from '../../internal/Popup';
+import { PopupPositionsType } from '../../internal/Popup';
 import { ThemeContext } from '../../lib/theming/ThemeContext';
 import { Theme } from '../../lib/theming/Theme';
 import { MenuKebabIcon } from '../../internal/icons/16px';
@@ -14,6 +14,7 @@ import { isTestEnv } from '../../lib/currentEnvironment';
 import { ThemeFactory } from '../../lib/theming/ThemeFactory';
 import { CommonWrapper, CommonProps } from '../../internal/CommonWrapper';
 import { cx } from '../../lib/theming/Emotion';
+import { rootNode, TSetRootNode } from '../../lib/rootNode';
 
 import { styles } from './Kebab.styles';
 
@@ -38,7 +39,7 @@ export interface KebabProps extends CommonProps {
    * **Возможные значения**: `top left`, `top center`, `top right`, `right top`, `right middle`, `right bottom`, `bottom left`, `bottom center`, `bottom right`, `left top`, `left middle`, `left bottom`
    * @default ['bottom left', 'bottom right', 'top left', 'top right']
    */
-  positions: PopupPosition[];
+  positions: PopupPositionsType[];
   menuMaxHeight?: number | string;
   /**
    * Не показывать анимацию
@@ -56,6 +57,7 @@ export interface KebabState {
   opened: boolean;
 }
 
+@rootNode
 export class Kebab extends React.Component<KebabProps, KebabState> {
   public static __KONTUR_REACT_UI__ = 'Kebab';
 
@@ -77,6 +79,7 @@ export class Kebab extends React.Component<KebabProps, KebabState> {
   };
 
   private theme!: Theme;
+  private setRootNode!: TSetRootNode;
 
   private listener: {
     remove: () => void;
@@ -120,7 +123,7 @@ export class Kebab extends React.Component<KebabProps, KebabState> {
   private renderMain() {
     const { disabled, positions } = this.props;
     return (
-      <CommonWrapper {...this.props}>
+      <CommonWrapper rootNodeRef={this.setRootNode} {...this.props}>
         <PopupMenu
           popupHasPin
           positions={positions}
