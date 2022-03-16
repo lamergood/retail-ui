@@ -1,6 +1,6 @@
 import React from 'react';
 import FocusLock from 'react-focus-lock';
-import { throttle } from 'lodash';
+import throttle from 'lodash.throttle';
 
 import { isNonNullable } from '../../lib/utils';
 import { isKeyEscape } from '../../lib/events/keyboard/identifiers';

@@ -164,7 +164,7 @@ class ComponentShowcase extends React.Component<ComponentShowcaseProps, {}> {
     const { name, description, onVariableSelect, isDebugMode } = this.props;
     const elements = Object.keys(description);
 
-    return (
+    return elements.length ? (
       <ThemeContext.Consumer>
         {(theme) => {
           return (
@@ -214,7 +214,7 @@ class ComponentShowcase extends React.Component<ComponentShowcaseProps, {}> {
           );
         }}
       </ThemeContext.Consumer>
-    );
+    ) : null;
   }
 }
 
