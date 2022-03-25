@@ -1,4 +1,3 @@
-/* eslint-disable prefer-arrow-callback */
 import React from 'react';
 
 import { Story } from '../../../typings/stories';

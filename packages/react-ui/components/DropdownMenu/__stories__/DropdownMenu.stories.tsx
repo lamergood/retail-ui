@@ -1,4 +1,3 @@
-/* eslint-disable prefer-arrow-callback */
 import React from 'react';
 import MenuIcon from '@skbkontur/react-icons/Menu';
 import ArrowSize2Icon from '@skbkontur/react-icons/ArrowSize2';

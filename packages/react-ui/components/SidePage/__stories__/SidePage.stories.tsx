@@ -1,4 +1,3 @@
-/* eslint-disable prefer-arrow-callback */
 import React, { useCallback, useState } from 'react';
 
 import { Story } from '../../../typings/stories';
@@ -673,7 +672,7 @@ StickySidePageHeaderWhenAnotherSidePageStory.storyName = 'Sticky SidePageHeader 
 StickySidePageHeaderWhenAnotherSidePageStory.parameters = {
   creevey: {
     tests: {
-      async ['sticky header, open and close internal side-page']() {
+      async 'sticky header, open and close internal side-page'() {
         await this.browser
           .actions({ bridge: true })
           .click(this.browser.findElement({ css: 'button' }))
