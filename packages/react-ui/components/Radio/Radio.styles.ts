@@ -1,4 +1,4 @@
-import { getBaselineCompensation } from '../../lib/styles/getBaselineCompensation';
+import { getLabGrotesqueBaselineCompensation } from '../../lib/styles/getLabGrotesqueBaselineCompensation';
 import { css, memoizeStyle, prefix } from '../../lib/theming/Emotion';
 import { Theme } from '../../lib/theming/Theme';
 import { isChrome } from '../../lib/client';
@@ -76,7 +76,7 @@ export const styles = memoizeStyle({
     const labGrotesqueCompenstation = parseInt(t.labGrotesqueBaselineCompensation);
     const fontSize = parseInt(t.checkboxFontSize);
 
-    const baselineCompensation = getBaselineCompensation(fontSize, labGrotesqueCompenstation, isChrome);
+    const baselineCompensation = getLabGrotesqueBaselineCompensation(fontSize, labGrotesqueCompenstation, isChrome);
     const circleSize = `calc(${t.radioSize} - 2 * ${t.radioBorderWidthCompensation})`;
     const circleOffsetY = `calc(${t.radioCircleOffsetY} + ${t.radioBorderWidthCompensation} + ${baselineCompensation}px)`;
     const circleMarginX = t.radioBorderWidthCompensation;
