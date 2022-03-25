@@ -81,14 +81,7 @@ export class InternalDateMediator {
   };
 
   public shiftDateComponent(type: InternalDateComponentType | null, step: number): boolean {
-    const getType = () => {
-      if (type === null) {
-        this.getLeftmostType();
-      }
-
-      return type;
-    };
-    const calculatedType = getType();
+    const calculatedType = type ?? this.getLeftmostType();
 
     const iDate = this.iDate.clone();
     const start = iDate.getRangeStart();
