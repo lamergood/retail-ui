@@ -689,7 +689,6 @@ function filterItem(value: any, item: any, pattern: string) {
     return false;
   }
 
-  // TODO: Find out what's going on in this `if` statement`.
   // TODO: Enable no-param-reassign rule.
   // eslint-disable-next-line no-param-reassign
   if (React.isValidElement(item) || (isFunction(item) && React.isValidElement((item = item())))) {

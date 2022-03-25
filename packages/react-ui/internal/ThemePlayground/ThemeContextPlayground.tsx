@@ -217,7 +217,6 @@ export class ThemeContextPlayground extends React.Component<PlaygroundProps, Pla
 }
 
 function findPropertyDescriptor(theme: Theme, propName: keyof Theme) {
-  // TODO: Find out what's going on here.
   // TODO: Rewrite for loop.
   // TODO: Enable `no-param-reassign` rule.
   // eslint-disable-next-line no-param-reassign

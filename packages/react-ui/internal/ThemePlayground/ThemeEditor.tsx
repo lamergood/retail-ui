@@ -150,7 +150,6 @@ const prefixesReducer = (acc: string[], current: { title: string; prefix: string
   return [...acc, ...splitPrefix];
 };
 const getBaseVariables = (theme: Theme, variable: keyof Theme): Array<keyof Theme> => {
-  // TODO: Find out what's going on here.
   // TODO: Rewrite for loop.
   // TODO: Enable `no-param-reassign` rule.
   // eslint-disable-next-line no-param-reassign
