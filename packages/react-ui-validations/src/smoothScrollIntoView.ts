@@ -1,8 +1,8 @@
-import { isNonNullable } from '../src/utils/isNonNullable';
 import { Nullable, Omit } from '../typings/Types';
 
 import { ScrollOffset } from './ValidationContainer';
 import { isBrowser } from './utils/utils';
+import { isNullable } from './utils/isNullable';
 
 export async function smoothScrollIntoView(element: HTMLElement, scrollOffset: ScrollOffset): Promise<void> {
   const scrollableParent = findScrollableParent(element);
@@ -134,7 +134,7 @@ function ease(time: number): number {
 }
 
 function getDocumentBodyStrict(): HTMLElement {
-  if (!isNonNullable(document.body)) {
+  if (isNullable(document.body)) {
     throw new Error('Scrolling can be used only in browser');
   }
 
@@ -147,7 +147,7 @@ function findScrollableParent(el: HTMLElement): HTMLElement {
   let hasVisibleOverflow: Nullable<boolean>;
   let currentElement: HTMLElement = el;
   do {
-    if (!isNonNullable(currentElement.parentElement) || !(currentElement.parentElement instanceof HTMLElement)) {
+    if (isNullable(currentElement.parentElement) || !(currentElement.parentElement instanceof HTMLElement)) {
       return getDocumentBodyStrict();
     }
     currentElement = currentElement.parentElement;

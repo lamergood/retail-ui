@@ -1,4 +1,4 @@
-import { isNonNullable } from '../../lib/utils';
+import { isNonNullable, isNullable } from '../../lib/utils';
 import { Nullable } from '../../typings/utility-types';
 import { isSafari } from '../../lib/client';
 
@@ -66,7 +66,7 @@ export class CurrencyHelper {
   }
 
   public static format(value: Nullable<number>, options?: Nullable<DecimalFormattingOptions>): string {
-    if (!isNonNullable(value)) {
+    if (isNullable(value)) {
       return '';
     }
 
@@ -169,7 +169,7 @@ export class CurrencyHelper {
       return false;
     }
 
-    if (!isNonNullable(options.integerDigits) && integerDigits > MAX_SAFE_DIGITS - (options.fractionDigits || 0)) {
+    if (isNullable(options.integerDigits) && integerDigits > MAX_SAFE_DIGITS - (options.fractionDigits || 0)) {
       return false;
     }
 

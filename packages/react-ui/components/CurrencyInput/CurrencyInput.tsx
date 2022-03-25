@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import warning from 'warning';
 import debounce from 'lodash.debounce';
 
-import { isNonNullable } from '../../lib/utils';
+import { isNonNullable, isNullable } from '../../lib/utils';
 import { isIE11 } from '../../lib/client';
 import { Input, InputProps } from '../Input';
 import { Nullable, Override } from '../../typings/utility-types';
@@ -452,7 +452,7 @@ function getInputSelectionFromEvent(input: EventTarget): Selection {
 }
 
 const getPlaceholder = (props: CurrencyInputProps) => {
-  if (!isNonNullable(props.placeholder)) {
+  if (isNullable(props.placeholder)) {
     return CurrencyHelper.format(0, {
       fractionDigits: props.fractionDigits,
       hideTrailingZeros: props.hideTrailingZeros,

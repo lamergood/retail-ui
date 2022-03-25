@@ -154,7 +154,7 @@ export class RadioGroup<T> extends React.Component<RadioGroupProps<T>, RadioGrou
   public renderMain() {
     const { width, onMouseLeave, onMouseOver, onMouseEnter, onBlur } = this.props;
     const style = {
-      width: isNonNullable(width) ? width : 'auto',
+      width: width ?? 'auto',
     };
     const handlers = {
       onMouseOver,

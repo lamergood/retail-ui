@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { isNonNullable } from '../../lib/utils';
+import { isNullable } from '../../lib/utils';
 import { isKeyArrowDown, isKeyArrowUp, isKeyEnter } from '../../lib/events/keyboard/identifiers';
 import { ScrollContainer, ScrollContainerScrollState } from '../../components/ScrollContainer';
 import { isMenuItem, MenuItem, MenuItemProps } from '../../components/MenuItem';
@@ -133,7 +133,7 @@ export class InternalMenu extends React.PureComponent<MenuProps, MenuState> {
           onScrollStateChange={this.handleScrollStateChange}
         >
           {React.Children.map(this.props.children, (child, index) => {
-            if (typeof child === 'string' || typeof child === 'number' || !isNonNullable(child)) {
+            if (typeof child === 'string' || typeof child === 'number' || isNullable(child)) {
               return child;
             }
             if (React.isValidElement(child) && typeof child.type === 'string') {

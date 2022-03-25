@@ -2,7 +2,7 @@ import React from 'react';
 import warning from 'warning';
 import isEqual from 'lodash.isequal';
 
-import { isNonNullable } from '../../lib/utils';
+import { isNullable } from '../../lib/utils';
 import { ThemeFactory } from '../../lib/theming/ThemeFactory';
 import { DefaultPosition, Popup, PopupProps, PopupPositionsType } from '../../internal/Popup';
 import { RenderLayer, RenderLayerProps } from '../../internal/RenderLayer';
@@ -238,7 +238,7 @@ export class Tooltip extends React.PureComponent<TooltipProps, TooltipState> {
 
   public renderContent = () => {
     const content = this.props.render ? this.props.render() : null;
-    if (!isNonNullable(content)) {
+    if (isNullable(content)) {
       return null;
     }
 

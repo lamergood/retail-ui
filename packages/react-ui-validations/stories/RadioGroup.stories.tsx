@@ -3,10 +3,10 @@ import React from 'react';
 import { Button } from '@skbkontur/react-ui/components/Button';
 import { RadioGroup } from '@skbkontur/react-ui/components/RadioGroup';
 import { Radio } from '@skbkontur/react-ui/components/Radio';
-import { isNonNullable } from '@skbkontur/react-ui/lib/utils';
 
 import { ValidationContainer, ValidationInfo, ValidationWrapper } from '../src';
 import { Nullable } from '../typings/Types';
+import { isNullable } from '../src/utils/isNullable';
 
 storiesOf('RadioGroup', module)
   .add('Example1', () => <RadioGroupStory />)
@@ -27,7 +27,7 @@ class RadioGroupStory extends React.Component<{}, RadioGroupStoryState> {
 
   public validateSex(): Nullable<ValidationInfo> {
     const { sex } = this.state;
-    if (!isNonNullable(sex)) {
+    if (isNullable(sex)) {
       return { message: 'Должно быть не пусто', type: 'submit' };
     }
     return null;
@@ -65,7 +65,7 @@ class RadioGroupChildrenStory extends React.Component<{}, RadioGroupStoryState> 
 
   public validateSex(): Nullable<ValidationInfo> {
     const { sex } = this.state;
-    if (!isNonNullable(sex)) {
+    if (isNullable(sex)) {
       return { message: 'Должно быть не пусто', type: 'submit' };
     }
     return null;

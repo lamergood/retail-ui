@@ -2,7 +2,6 @@ import React from 'react';
 import normalizeWheel from 'normalize-wheel';
 import throttle from 'lodash.throttle';
 
-import { isNonNullable } from '../../lib/utils';
 import { MAX_DATE, MAX_MONTH, MAX_YEAR, MIN_DATE, MIN_MONTH, MIN_YEAR } from '../../lib/date/constants';
 import { Nullable } from '../../typings/utility-types';
 import { Theme } from '../../lib/theming/Theme';
@@ -74,8 +73,8 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
 
     const today = getTodayDate();
 
-    const initialMonth = !isNonNullable(props.initialMonth) ? today.month : props.initialMonth;
-    const initialYear = !isNonNullable(props.initialYear) ? today.year : props.initialYear;
+    const initialMonth = props.initialMonth ?? today.month;
+    const initialYear = props.initialYear ?? today.year;
 
     this.state = {
       scrollPosition: 0,

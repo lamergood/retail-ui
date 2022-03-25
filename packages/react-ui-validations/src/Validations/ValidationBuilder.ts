@@ -1,10 +1,10 @@
 /* eslint-disable no-useless-constructor */
 import React from 'react';
 
-import { isNonNullable } from '../utils/isNonNullable';
 import { Nullable } from '../../typings/Types';
 import { ValidationBehaviour, ValidationLevel } from '../ValidationWrapperInternal';
 import { ValidationInfo } from '../ValidationWrapper';
+import { isNullable } from '../utils/isNullable';
 
 import { LambdaPath, PathTokensCache } from './PathHelper';
 import { ValidationWriter } from './ValidationWriter';
@@ -25,7 +25,7 @@ export class ValidationBuilder<TRoot, T> {
 
   public prop<TChild>(lambdaPath: LambdaPath<T, TChild>, rule: ValidationRule<TRoot, TChild>): void {
     const info = this.getPathInfo(lambdaPath);
-    if (!isNonNullable(info)) {
+    if (isNullable(info)) {
       return;
     }
 
@@ -35,7 +35,7 @@ export class ValidationBuilder<TRoot, T> {
 
   public array<TChild>(lambdaPath: LambdaPath<T, TChild[]>, rule: ItemValidationRule<TRoot, TChild>): void {
     const info = this.getPathInfo(lambdaPath);
-    if (!isNonNullable(info) || !Array.isArray(info.data)) {
+    if (isNullable(info) || !Array.isArray(info.data)) {
       return;
     }
 
@@ -85,7 +85,7 @@ export class ValidationBuilder<TRoot, T> {
 
     let data: any = this.data;
     for (const part of path) {
-      if (!isNonNullable(data)) {
+      if (isNullable(data)) {
         return null;
       }
       data = data[part];
